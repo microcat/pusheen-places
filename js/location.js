@@ -31,10 +31,15 @@ function places_callback(results, status) {
 		s.innerHTML = "There she is!";
 		s.className = 'success';
 		// Create pusheen based on first result.
-		var pusheen = document.createElement('div');
-		pusheen.id = 'pusheen';
-		pusheen.innerHTML=results[0].name + results[0].types;
-		document.getElementById("pusheen").appendChild(pusheen);
+		var type = results[0].types[0];
+		var pusheen_image = document.createElement("img");
+		pusheen_image.src = pusheenImages[type];
+		var place = document.createElement('p');
+		// TODO: URL link
+		place.innerHTML= "Pusheen is at " + results[0].name + ", a " + type.replace("_", " ") + " near " + results[0].vicinity + ".";
+		var container = document.getElementById("pusheen");
+		container.appendChild(pusheen_image);
+		container.appendChild(place);
 	} else {
 		s.innerHTML = "Couldn't find her :(";
 	}
