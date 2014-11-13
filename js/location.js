@@ -29,7 +29,6 @@ function places_callback(results, status) {
 	var s = document.querySelector('#status');
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
 		s.innerHTML = "There she is!";
-		s.className = 'success';
 		// Create pusheen based on first result.
 		// Get type. guaranteed at least 1 is ok (specificed in request)
 		var ok_types = Object.keys(pusheenImages);
@@ -45,6 +44,7 @@ function places_callback(results, status) {
 		var pusheen_image = new Image();
 		pusheen_image.src = "images/" + pusheenImages[type] + ".gif";
 		pusheen_image.id = "pusheen_image";
+		pusheen_image.className = "thumbnail";
 		var place = document.createElement('p');
 		// TODO: URL link
 		place.innerHTML= "Pusheen is at " + results[0].name + ", a " + placetype(type) + " near " + results[0].vicinity + ".";
@@ -58,8 +58,7 @@ function places_callback(results, status) {
 
 function error(msg) {
 	var s = document.querySelector('#status');
-	s.innerHTML = typeof msg == 'string' ? msg : "failed";
-	s.className = 'fail';
+	s.innerHTML = typeof msg == 'string' ? msg : "Couldn't find her :(";
 	// console.log(arguments);
 }
 
