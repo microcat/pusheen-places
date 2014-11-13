@@ -66,6 +66,6 @@ function error(msg) {
 function placetype(type) {
 	var suffix = "";
 	// these dont make sense by themselves
-	if (["food", "meal_delivery", "meal_takeaway", "parking"].indexOf(type) != -1) suffix = " place";
+	if (["food", "meal_delivery", "meal_takeaway", "parking", "hair_care"].indexOf(type) != -1) suffix = " place";
 	return type.replace("_", " ") + suffix;
 }
