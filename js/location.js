@@ -31,12 +31,23 @@ function places_callback(results, status) {
 		s.innerHTML = "There she is!";
 		s.className = 'success';
 		// Create pusheen based on first result.
-		var type = results[0].types[0];
-		var pusheen_image = document.createElement("img");
-		pusheen_image.src = pusheenImages[type];
+		// Get type. guaranteed at least 1 is ok (specificed in request)
+		var ok_types = Object.keys(pusheenImages);
+		var type;
+		for (var i = 0; i < results[0].types.length; i++) {
+			var temptype = results[0].types[i];
+			if (ok_types.indexOf(temptype) != -1) {
+				type = temptype;
+				break;
+			}
+		};
+		// get image
+		var pusheen_image = new Image();
+		pusheen_image.src = "images/" + pusheenImages[type] + ".gif";
+		pusheen_image.id = "pusheen_image";
 		var place = document.createElement('p');
 		// TODO: URL link
-		place.innerHTML= "Pusheen is at " + results[0].name + ", a " + type.replace("_", " ") + " near " + results[0].vicinity + ".";
+		place.innerHTML= "Pusheen is at " + results[0].name + ", a " + placetype(type) + " near " + results[0].vicinity + ".";
 		var container = document.getElementById("pusheen");
 		container.appendChild(pusheen_image);
 		container.appendChild(place);
@@ -50,4 +61,12 @@ function error(msg) {
 	s.innerHTML = typeof msg == 'string' ? msg : "failed";
 	s.className = 'fail';
 	// console.log(arguments);
+}
+
+// Some place types need different phrasing...most just their underscores removed.
+function placetype(type) {
+	var suffix = "";
+	// these dont make sense by themselves
+	if (["food", "meal_delivery", "meal_takeaway", "parking"].indexOf(type) != -1) suffix = " place";
+	return type.replace("_", " ") + suffix;
 }
