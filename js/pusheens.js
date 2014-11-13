@@ -1,0 +1,27 @@
+// Map of place types to the pusheen image (/images/) they correspond to.
+// https://developers.google.com/places/documentation/supported_types
+var pusheenImages = {
+	"airport": "",
+	"amusement_park": "",
+	"aquarium": "",
+	"art_gallery": "",
+	"bakery": "",
+	"bar": "",
+	"bicycle_store": "",
+	"book_store": "",
+	"cafe": "",
+	"convenience_store": "",
+	"department_store": "",
+	"doctor": "",
+	"grocery_or_supermarket": "",
+	"gym": "",
+	"hospital": "",
+	"library": "",
+	"meal_delivery": "",
+	"meal_takeaway": "",
+	"movie_theater": "",
+	"park": "",
+	"pet_store": "",
+	"school": "",
+	"university": "",
+}

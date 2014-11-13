@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Pusheen at Places</title>
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+	<script type="text/javascript" src="js/location.js"></script>
+	<script type="text/javascript" src="js/pusheens.js"></script>
+</head>
+<body>
+
+<div id="container">
+	<h1>Pusheen at Places</h1>
+	Looking around... <span id="status">is Pusheen here?</span>
+	<div id="map-canvas"></div>
+	<div id="pusheen"></div>
+	<hr>
+	<img src="images/powered-by-google.png" style="float:right;">
+</div>
+
+<script>
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(success, error);
+	} else {
+		error('not supported');
+	}
+</script>
+
+</body>
+</html>
