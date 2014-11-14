@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Pusheen at Places</title>
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans" />
@@ -12,15 +14,17 @@
 </head>
 <body>
 
-<div id="container">
-	<h1>Pusheen at Places</h1>
-	<p>Looking around... <span id="status">is Pusheen here?</span></p>
-	<div id="map-canvas"></div>
-	<div id="pusheen"></div>
-	<hr>
-	<small>all pusheens from <a href="http://pusheen.com">pusheen.com</a>
-	<br>uses <a href="http://html5demos.com/geo">geolocation</a> & <a href="https://developers.google.com/maps/documentation/javascript/examples/place-search">google places</a> to find where pusheen is, close to you</small>
-	<img src="images/powered-by-google.png" style="float:right;">
+<div class="container">
+	<div id = "box">
+		<h2>Pusheen at Places</h2>
+		<p>Looking around... <span id="status">is Pusheen here?</span></p>
+		<div id="map-canvas"></div>
+		<div id="pusheen"></div>
+		<hr>
+		<small>all pusheens from <a href="http://pusheen.com">pusheen.com</a>
+		<br>uses <a href="http://html5demos.com/geo">geolocation</a> & <a href="https://developers.google.com/maps/documentation/javascript/examples/place-search">google places</a> to find where pusheen is, close to you</small>
+		<img src="images/powered-by-google.png" style="float:right;">
+	</div>
 </div>
 
 <script>
