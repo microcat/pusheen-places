@@ -2,6 +2,9 @@
 Based on following demos: 
 http://html5demos.com/geo
 https://developers.google.com/maps/documentation/javascript/examples/place-search */
+var map;
+var service;
+
 function success(position) {
 	var s = document.querySelector('#status');
 	s.innerHTML = "Over there?";
@@ -18,13 +21,13 @@ function success(position) {
 	var request = {
 		location: user_loc,
 		radius: '500',
-		// TODO: Reference keys of map to pusheen instead.
 		types: Object.keys(pusheenImages)
 	}
 	service = new google.maps.places.PlacesService(map);
 	service.nearbySearch(request, places_callback);
 }
 
+// Executed when places information is returned about location.
 function places_callback(results, status) {
 	var s = document.querySelector('#status');
 	if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -46,13 +49,30 @@ function places_callback(results, status) {
 		pusheen_image.id = "pusheen_image";
 		pusheen_image.className = "thumbnail";
 		var place = document.createElement('p');
-		// TODO: URL link
-		place.innerHTML= "Pusheen is at " + results[0].name + ", a " + placetype(type) + " near " + results[0].vicinity + ".";
+		// Span to update with a URL link later.
+		place.innerHTML = "Pusheen is at <span id='place-name'>" + results[0].name + "</span>, a " + placetype(type) + " near " + results[0].vicinity + ".";
 		var container = document.getElementById("pusheen");
 		container.appendChild(pusheen_image);
 		container.appendChild(place);
+
+		// Request url/details
+		var request = {
+			placeId: results[0].place_id
+		};
+		service.getDetails(request, details_callback);
 	} else {
 		s.innerHTML = "Couldn't find her :(";
+	}
+}
+
+// Changes name of place to a link to their website.
+// Executed when places details are returned.
+function details_callback(place, status) {
+	if (status == google.maps.places.PlacesServiceStatus.OK) {
+		// Update URL.
+		var span = document.getElementById("place-name");
+		// Alternative: change it to text node with href. This works too!
+		span.innerHTML = "<a href='" + place.url + "'>" + span.innerHTML + "</a>";
 	}
 }
 
